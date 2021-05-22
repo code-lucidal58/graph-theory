@@ -48,3 +48,44 @@ due to lack of structure, it is seldom used.
 Space efficient. Iterating over edges is efficient. Very simple structure.
 #### Cons
 Less space efficient for dense graphs. Edge weight lookup is O(E). 
+
+## Common Graph Problems
+There are a number of questions to be asked before the problem is actually tackled. Is it undirected or directed, weighted or not?
+Depending on the usecase, the graph will be mostly sparse ot dense? What form of representation is best suited?
+
+### Shortest Path Algorithms
+Given a weighted graph, find the shortest path to Node A from Node B. There are a number of algorithms available for the same. 
+Depending on the connectivity, negative cycles, strongly connected graphs, an algorithm is chosen. 
+**Algorithms**: BFS (unweighted graph), Dijkstra's, Bellman-Ford (for graphs with -ve cycle), Floyd-Warshall (for graphs with -ve cycle), 
+A*, DFS, Tarjan's, Kosaraju's.
+
+### Travelling Salesman Problem
+This is an NP-hard problem, meaning computationally expensive. A salesman has to travel through all the nodes of the graph
+at minimum cost.  
+**Algorithms**: Held-Karp, branch and bound, approximation algos. 
+
+### Identify Bridges
+Bridges/Cut edges is an edge whose removal increases the number of connected components. For example the connection between Person A
+and person B is a brigde in a graph with all friends of A and all friends of B. They hint weak points, bottlenecks, or vulnerabilities.
+The nodes in the bridges are called **articulation points/cut vertex**.
+
+### Minimum Spanning Tree
+It is a tree with all vertices connected without any cycles. Total weight of the resultant tree should be minimum.  
+**Algorithms**: Kruskal's, Prim's, Boruvka's. 
+
+### Network flow: max flow
+Given source, sink and infinite input, what is the capacity of the network? For example, number of cars that can fit on a route
+to town A from town B.  
+**Algorithms**: Ford-Fulkerson, Edmonds-Karp and Dinic's.
+
+## Depth First Search
+Fundamental search for traversal through nodes and edges. Time complexity O(V+E), directly proportional to size of graph. 
+Often used as the building block for other algorithms. The augmented version can be used to find connected components, bridges, etc.
+It plunges into depth first, does not care which node it selects next, and goes on till it cannot move ahead. From here, it backtracks and continues.
+The traversal should not go in cycles. Hence, backtracks starts even when a visited node is reached. Adjacency List is 
+used for in DFS. Code for DFS can be found [here](dfs.py).
+
+Connected components are a set of nodes forming disjoint graphs. DFS can be used to count the number of components in a
+representation. This is done by giving same id to each node in a component. Start DFS at each node, unless it is marked as visited.
+Code for component counts is [here](count_components_dfs.py).
+
